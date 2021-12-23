@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { DashboardComponent } from './form/dashboard/dashboard.component';
+import { FormComponent } from './pages/form/form.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-/*   {
-    path: 'dashboard',
-    component: DashboardComponent
+  {
+    path: 'form',
+    component: FormComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
-  } */
+    redirectTo: 'home'
+  } 
 ];
 
 @NgModule({
