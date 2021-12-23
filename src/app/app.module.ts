@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from '../app/app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,14 +10,15 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './pages/home/home.component';
-import { FormComponent } from './pages/form/form.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PageModule } from './pages/page.module';
+import { ComponentModule } from './components/component.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    FormComponent
+  
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -27,6 +27,8 @@ import { FormComponent } from './pages/form/form.component';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    PageModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

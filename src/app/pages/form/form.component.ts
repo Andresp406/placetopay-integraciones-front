@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  forma:FormGroup;
+  constructor() {
+    this.forma = this.setValidation();
+   }
 
   ngOnInit(): void {
   }
+
+  setValidation(){
+    return new FormGroup({
+      name: new FormControl(null),
+      email: new FormControl(null),
+      genero: new FormControl(null),
+      position: new FormControl(null),
+
+    })
+  }
+
+  createEditProfile(event:any){
+
+  }
+
 
 }
