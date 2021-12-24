@@ -18,7 +18,7 @@ import { ComponentModule } from './components/component.module';
 @NgModule({
   declarations: [
     AppComponent,
-  
+   
   ],
   imports: [
     ToastrModule.forRoot(),

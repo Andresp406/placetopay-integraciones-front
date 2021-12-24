@@ -5,9 +5,11 @@ import { PageModule } from '../pages/page.module';
 
 
 
+
 @NgModule({
   declarations: [
-    FooterComponent
+    FooterComponent,
+  
   ],
   imports: [
     CommonModule,

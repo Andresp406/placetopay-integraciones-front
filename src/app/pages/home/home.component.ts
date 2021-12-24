@@ -13,8 +13,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showSuccess() {
-    this._toast.success('Hello world!', 'Toastr fun!');
-  }
+ 
 
 }

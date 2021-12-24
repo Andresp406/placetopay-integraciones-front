@@ -1,0 +1,16 @@
+<ng-template #divModal let-modal>
+    <div class="rounded-0 bg-white">
+        <app-sign-up
+          *ngIf="target === 'register'"
+          (cerrarModal)="modal.close()"
+          [user]="data"
+          (dataUser)="dataUser($event)"        
+        ></app-sign-up>
+
+        <app-sign-in
+        *ngIf="target === 'login'"
+        (cerrarModal)="modal.close()"
+        [user]="data"
+      ></app-sign-in>    
+    </div>
+</ng-template>

@@ -1,0 +1,60 @@
+<div class="container mt-3 mb-3 modal-content rounded-0" style="width: 390px; height: auto">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <span class="modal-title exo mt-1 mb-0" style="font-size: 16px"
+        >INICIAR SESION</span
+      >
+     <app-button-close
+        [addClassTopRight]="false"
+        (cerrarModal)="cerrar($event)"
+      ></app-button-close> 
+    </div>
+    <!-- Modal body -->
+    <form
+      class="modal-body p-3"
+      (ngSubmit)="onLogin()"
+      [formGroup]="forma"
+    >
+    
+    <div class="mb-2 text-right" style="height: 50px">
+      <input
+  type="hidden"
+  formControlName="id"
+  />
+        <input
+          type="text"
+          class="form-control exo text-field shadow-none"
+          style="z-index: 50"
+          placeholder="Username"
+          formControlName="username"
+          #username
+        />
+        <!-- <app-validation-errors [formulario]="forma" formControlLabel="username" [minlenght]=3 [maxlenght]=20>
+        </app-validation-errors>     -->   
+      </div>
+      <div class="mb-2 text-right" style="height: 50px">
+        <input
+          type="password"
+          class="form-control exo text-field shadow-none"
+          placeholder="Contraseña"
+          formControlName="password"
+          #nombre
+        />
+        <!-- <app-validation-errors [formulario]="forma" formControlLabel="password" [minlenght]=3 [maxlenght]=100>
+        </app-validation-errors> -->
+       </div>
+       
+      <button
+        type="submit"
+        class="btn btn-primary aldrich shadow-none rounded-0"
+        style="width: 100%; height: 50px; opacity: 1"
+        data-dismiss="modal"
+        [disabled]="
+          forma.invalid || forma.pristine 
+        "
+      >
+        INICIAR SESION
+      </button>
+    </form>
+  </div>
+

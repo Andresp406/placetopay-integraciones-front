@@ -6,18 +6,20 @@ import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { ComponentModule } from '../components/component.module';
+import { ModalModule } from '../components/modals/modal.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    FormComponent
+    FormComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule, 
     AppRoutingModule,
-    ComponentModule
+    ComponentModule,
+    ModalModule
   ]
 })
 export class PageModule { }
