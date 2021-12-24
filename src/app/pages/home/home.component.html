@@ -4,7 +4,7 @@
         <ul class="sidebar-nav">
             <li class="sidebar-brand"><a href="#page-top">PlaceToPay Evertec</a></li>
             <li class="sidebar-nav-item"><a href="javascript:void(0);" [routerLink]="['/']">Home</a></li>           
-            <li class="sidebar-nav-item"><a href="javascript:void(0);" [routerLink]="['/form']">Form</a></li>   
+            <li class="sidebar-nav-item"><a href="#product" >Productos</a></li>   
             <li class="sidebar-nav-item"><a href="javascript:void(0);" (click)="onLogin.open()">Login</a></li>   
             <li class="sidebar-nav-item"><a href="javascript:void(0);" (click)="onRegister.open()">Register</a></li>   
 
@@ -15,9 +15,29 @@
         <div class="container px-4 px-lg-5 text-center">
             <h1 class="mb-1">Prueba de Ingreso</h1>
             <h3 class="mb-5"><em>Para ingeniero de integraciones</em></h3>
-            <a class="btn btn-primary btn-xl" [routerLink]="['/form']">Ir al formulario</a>
+            <a class="btn btn-primary btn-xl" href="#product">Ir a los productos</a>
         </div>
-    </header>   
+    </header> 
+    
+    <section class="container mt-4">
+        <h2 class="text-center mb-3" id="product">Nuestros Productos!</h2>
+        <div class="row" >
+            <div class="col">
+               <app-card-products></app-card-products>
+            </div>
+            <div class="col">
+                <app-card-products></app-card-products>
+            </div>
+            <div class="col">
+                <app-card-products></app-card-products>
+            </div>
+            <div class="col">
+                <app-card-products></app-card-products>
+            </div>
+            
+        </div>
+        
+    </section>
     <app-footer></app-footer>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>

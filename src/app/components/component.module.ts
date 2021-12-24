@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { PageModule } from '../pages/page.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { CardProductsComponent } from './card-products/card-products.component';
 
 
 
@@ -9,13 +10,16 @@ import { PageModule } from '../pages/page.module';
 @NgModule({
   declarations: [
     FooterComponent,
+    CardProductsComponent,
   
   ],
   imports: [
     CommonModule,
+    AppRoutingModule
   ],
   exports:[
-    FooterComponent
+    FooterComponent,
+    CardProductsComponent
   ]
 })
 export class ComponentModule { }
