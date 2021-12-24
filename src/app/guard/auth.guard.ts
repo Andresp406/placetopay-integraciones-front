@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
         }, err => {
           console.log(err);
           resp(false);
-         // this._authService.removeCurrentUser()
+         //x this._authService.removeCurrentUser()
           this._router.navigate(['/']);
         })
     })

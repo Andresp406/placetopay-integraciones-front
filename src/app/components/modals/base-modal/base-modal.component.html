@@ -7,6 +7,11 @@
           (dataUser)="dataUser($event)"        
         ></app-sign-up>
 
+        <app-form
+        *ngIf="target === 'buy'"
+        (cerrarModal)="modal.close()"          
+      ></app-form>
+
         <app-sign-in
         *ngIf="target === 'login'"
         (cerrarModal)="modal.close()"

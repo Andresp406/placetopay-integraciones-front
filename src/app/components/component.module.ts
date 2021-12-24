@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardProductsComponent } from './card-products/card-products.component';
+import { ModalModule } from './modals/modal.module';
 
 
 
@@ -15,7 +16,8 @@ import { CardProductsComponent } from './card-products/card-products.component';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ModalModule
   ],
   exports:[
     FooterComponent,
