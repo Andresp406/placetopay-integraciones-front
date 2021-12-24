@@ -6,6 +6,7 @@ import { BaseModalComponent } from './base-modal/base-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { FormComponent } from './form/form.component';
+import { ComponentModule } from '../component.module';
 
 
 
@@ -20,7 +21,9 @@ import { FormComponent } from './form/form.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    
+
   ], 
   exports:[
     SignInComponent,
