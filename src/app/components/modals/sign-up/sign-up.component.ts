@@ -47,7 +47,7 @@ export class SignUpComponent implements OnInit {
       usuario : new FormControl(null,[Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9]+$')]),
       nombre :new FormControl(null, [Validators.required,Validators.minLength(3),  Validators.maxLength(100)]),
       apellido: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
-      typeDocument: new FormControl(null),
+      typeDocument: new FormControl(null, [Validators.required]),
       document: new FormControl(null, [Validators.required]),
 
     });
