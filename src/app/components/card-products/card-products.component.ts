@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardProductsComponent implements OnInit {
 
+  isAuth:boolean=false;
+
   constructor() { }
 
   ngOnInit(): void {

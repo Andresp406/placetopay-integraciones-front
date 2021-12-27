@@ -27,6 +27,7 @@ export class BaseModalComponent implements OnInit {
     this.modal.showModal(this.divModal);
   }
 
+
   dataUser(event:any){
     this.newUser.emit(event);
   }

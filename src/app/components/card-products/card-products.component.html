@@ -7,7 +7,7 @@
   <div class="card-body">
       <div>
           <h5 class="card-title">Portatil</h5>
-          <h5 class="card-title text-right">$5</h5>
+          <h5 class="card-title text-left">$5 USD</h5>
       </div>
 
     <p class="card-text">
@@ -17,8 +17,19 @@
     <p class="card-text">
       <small class="text-muted"></small>
     </p>
-    <a class="btn btn-outline-primary" (click)="onBuy.open()">Comprar</a>
+
+    <ng-template *ngIf="isAuth; then buy; else login"></ng-template>
+    
+    <ng-template #buy>
+      <a class="btn btn-outline-primary" (click)="onBuy.open()" >Comprar</a>
+    </ng-template>
+
+    <ng-template #login>
+      <a class="btn btn-outline-primary" (click)="onLogin.open()" >Iniciar Sesion</a>
+    </ng-template>
+    
   </div>
 </div>
 <app-base-modal #onBuy [target]="'buy'"></app-base-modal>
+<app-base-modal #onLogin [target]="'login'"></app-base-modal>
 

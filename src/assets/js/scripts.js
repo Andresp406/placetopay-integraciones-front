@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', event => {
     let scrollToTopVisible = false;
     // Closes the sidebar menu
     const menuToggle = document.body.querySelector('.menu-toggle');
-    menuToggle.addEventListener('click', event => {
+    menuToggle?.addEventListener('click', event => {
         event.preventDefault();
         sidebarWrapper.classList.toggle('active');
         _toggleMenuIcon();
