@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  isAuth:boolean=true;
+  isAuth:boolean=false;
 
   constructor(
     private _toast:ToastrService,
