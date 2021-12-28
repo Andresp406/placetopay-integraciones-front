@@ -1,9 +1,22 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlacetopayService {
 
-  constructor() { }
+  constructor(
+    private _http:HttpClient,
+    private _auth:AuthService
+  ) { }
+
+  connectGateWay(body:any):Observable<any>{
+    const headers= this._auth.headers;
+    const url = `${environment.url_base}/api/v1/sale/?search`;
+    return this._http.post<any>(url, body, {headers});
+    }
 }

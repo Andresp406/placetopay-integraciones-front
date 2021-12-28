@@ -21,7 +21,8 @@ export interface IDataLogin {
 
 export interface IUser {
     id:                number;
-    name:              string;
+    first_name:             string;
+    last_name:         string;
     email:             string;
     email_verified_at: Date;
     created_at:        Date;

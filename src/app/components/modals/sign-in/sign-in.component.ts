@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ILogin, ISetDataLocalStorage } from 'src/app/interfaces/login';
+import { ILogin, IResponseLogin, ISetDataLocalStorage } from 'src/app/interfaces/login';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -45,13 +45,13 @@ export class SignInComponent implements OnInit {
       email :this.forma.get('email')?.value,
       password : this.forma.get('password')?.value
     };
-    this._auth.login(data).subscribe(resp => {
+    this._auth.login(data).subscribe((resp:IResponseLogin) => {
       const dataStorage: ISetDataLocalStorage = {
         "x-token": resp.data.token,
         user: resp.data.user,
       }
       this._auth.setUserLocalStorage(dataStorage);
-      this._toast.success(`Bienvenido ${resp.data.user.name}`, '', {timeOut:1500})
+      this._toast.success(`Bienvenido ${resp.data.user.first_name} ${resp.data.user.last_name}`, '', {timeOut:1500})
         this.cerrar(true);
 
     }, err => console.log(err))

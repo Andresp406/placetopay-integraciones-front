@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { PlacetopayService } from '../../../services/placetopay.service';
 
 @Component({
   selector: 'app-form',
@@ -8,16 +9,34 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
-  forma!:FormGroup;
+  forma:FormGroup;
   @Output() cerrarModal = new EventEmitter<boolean>();
+  @Input() data:any;
 
-  constructor() { }
+  constructor(
+    private _placetopay:PlacetopayService
+  ) { 
+    this.forma = this.setValidation();
+  }
+
+  setValidation(){
+    return new FormGroup({
+      amount: new FormControl(null)
+    })
+  }
 
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
-  handleForm(event:any){
+  handleForm(){
+    const data:any={
+      product_id:this.data.id,
+      amount : this.forma.get('amount')?.value
+    }
+
+    this._placetopay.connectGateWay(data).subscribe(console.log)
 
   }
 

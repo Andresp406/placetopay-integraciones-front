@@ -17,7 +17,7 @@
         <ng-template *ngIf="isAuth; then buy; else login"></ng-template>
 
         <ng-template #buy>
-          <a class="btn btn-outline-primary" (click)="onBuy.open()">Comprar</a>
+          <a class="btn btn-outline-primary" (click)="onBuy.open(product)">Comprar</a>
         </ng-template>
 
         <ng-template #login>
