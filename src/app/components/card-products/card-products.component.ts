@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
+import { AuthService } from '../../services/auth.service';
+import { IResponseProduct, IProductData, Product } from '../../interfaces/products';
 
 @Component({
   selector: 'app-card-products',
@@ -7,11 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardProductsComponent implements OnInit {
 
-  isAuth:boolean=false;
+  products : Product [] =[];
 
-  constructor() { }
+  constructor(
+    private _auth:AuthService,
+    private _product: ProductsService
+  ) { }
+ 
 
-  ngOnInit(): void {
+  get isAuth(): boolean {
+    return this._auth.checkLogued();
   }
+  
+  ngOnInit(): void {
+  this.getAllProducts();
+  }
+
+  getAllProducts(){
+    this._product.getAllProduct('').subscribe((resp:IResponseProduct) =>{
+      this.products = resp.data.products;
+    })
+  }
+
 
 }

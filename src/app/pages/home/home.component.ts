@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,20 +10,31 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  isAuth:boolean=false;
 
   constructor(
     private _toast:ToastrService,
-    private _auth:AuthService
+    private _auth:AuthService,
+    private _router: Router,
+
     ) { }
 
   ngOnInit(): void {
+    console.log(this.isAuth)
   }
 
-  logOut(){
-    console.log('cerro');
-    this._toast.success('session cerrada!!', '', {timeOut:1000})
+  get isAuth(): boolean {
+    return this._auth.checkLogued();
   }
+  
+  logOut() {
+    this._auth.removeCurrentUser();
+    this._router.navigate(['/'])
+    this._toast.warning("Goodbye!", '', {
+      timeOut: 1000,
+    
+    })
+  }
+ 
 
 
 

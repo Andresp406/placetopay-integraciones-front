@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ILogin, ISetDataLocalStorage } from 'src/app/interfaces/login';
 import { AuthService } from '../../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -12,10 +15,12 @@ export class SignInComponent implements OnInit {
   forma:FormGroup;
   @Input() user:any;
   @Output() cerrarModal = new EventEmitter<boolean>();
+  isAuth:boolean=false;
 
   
   constructor(
-    private _auth:AuthService
+    private _auth:AuthService,
+    private _toast:ToastrService
   ) {
     this.forma = this.setValidation();
    }
@@ -30,14 +35,26 @@ export class SignInComponent implements OnInit {
 
   setValidation(){
     return new FormGroup({
-      id: new FormControl(null),
-      username : new FormControl(null),
+      email : new FormControl(null),
       password : new FormControl(null)
     });
   }
 
   onLogin(){
+    const data :ILogin = {
+      email :this.forma.get('email')?.value,
+      password : this.forma.get('password')?.value
+    };
+    this._auth.login(data).subscribe(resp => {
+      const dataStorage: ISetDataLocalStorage = {
+        "x-token": resp.data.token,
+        user: resp.data.user,
+      }
+      this._auth.setUserLocalStorage(dataStorage);
+      this._toast.success(`Bienvenido ${resp.data.user.name}`, '', {timeOut:1500})
+        this.cerrar(true);
 
+    }, err => console.log(err))
   }
 
 

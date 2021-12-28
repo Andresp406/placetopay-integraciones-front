@@ -36,4 +36,6 @@ export class BaseModalComponent implements OnInit {
     this.updateUser.emit(event);
   }
 
+
+
 }

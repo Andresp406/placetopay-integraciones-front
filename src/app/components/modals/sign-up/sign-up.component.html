@@ -13,14 +13,11 @@
     <!-- Modal body -->
     <form
       class="modal-body p-3"
-      (ngSubmit)="createEditProfile($event)"
+      (ngSubmit)="handleForm()"
       [formGroup]="forma"
     >
     <div class="mb-2 text-right" style="height: 50px">
-      <input
-      type="hidden"
-      formControlName="id"
-      />
+      
       <input
         type="email"
         class="form-control exo text-field shadow-none"
@@ -31,27 +28,16 @@
     <app-validation-errors [formulario]="forma" formControlLabel="email" [minlenght]=3 [maxlenght]=100>
       </app-validation-errors> 
      </div>
-     <div class="mb-2 text-right" style="height: 50px">
-        <input
-          type="text"
-          class="form-control exo text-field shadow-none"
-          style="z-index: 50"
-          placeholder="Username"
-          formControlName="usuario"
-          #username
-        />
-         <app-validation-errors [formulario]="forma" formControlLabel="usuario" [minlenght]=3 [maxlenght]=20>
-        </app-validation-errors>       
-      </div>
+    
       <div class="mb-2 text-right" style="height: 50px">
         <input
           type="text"
           class="form-control exo text-field shadow-none"
           placeholder="Nombre"
-          formControlName="nombre"
+          formControlName="first_name"
           #nombre
         />
-       <app-validation-errors [formulario]="forma" formControlLabel="nombre" [minlenght]=3 [maxlenght]=100>
+       <app-validation-errors [formulario]="forma" formControlLabel="first_name" [minlenght]=3 [maxlenght]=100>
         </app-validation-errors> 
        </div>
        <div class="mb-2 text-right" style="height: 50px">
@@ -59,20 +45,20 @@
           type="text"
           class="form-control exo text-field shadow-none"
           placeholder="Apellido"
-          formControlName="apellido"
+          formControlName="last_name"
           #apellido
         />
-        <app-validation-errors [formulario]="forma" formControlLabel="apellido" [minlenght]=3 [maxlenght]=100>
+        <app-validation-errors [formulario]="forma" formControlLabel="last_name" [minlenght]=3 [maxlenght]=100>
         </app-validation-errors> 
        </div>
 
 
        <div class="mb-2 text-right" style="height: 50px">
-         <select formControlName="typeDocument" class="form-control exo text-field shadow-none">
+         <select formControlName="type_document" class="form-control exo text-field shadow-none">
           <option>Seleccione el tipo de documento</option>
-          <option *ngFor="let document of typeDocument">{{document}}</option>
+          <option *ngFor="let document of type_document">{{document}}</option>
         </select> 
-        <app-validation-errors [formulario]="forma" formControlLabel="typeDocument">
+        <app-validation-errors [formulario]="forma" formControlLabel="type_document">
         </app-validation-errors> 
         </div>
 
@@ -90,10 +76,39 @@
         <app-validation-errors [formulario]="forma" formControlLabel="document">
         </app-validation-errors> 
        </div>
+
+       <div class="mb-2 text-right" style="height: 50px">
+
+        <input
+        type="password"
+        class="form-control exo text-field shadow-none"
+        placeholder="Contraseña"
+        formControlName="password"
+        #password
+      />
+
+        <app-validation-errors [formulario]="forma" formControlLabel="password">
+        </app-validation-errors> 
+       </div>
+  
+       <div class="mb-2 text-right" style="height: 50px">
+
+        <input
+        type="password"
+        class="form-control exo text-field shadow-none"
+        placeholder="Confirmar contraseña"
+        formControlName="password_confirmation"
+        #password_confirmation
+      />
+
+        <app-validation-errors [formulario]="forma" formControlLabel="password_confirmation">
+        </app-validation-errors> 
+       </div>
+  
   
       <button
         type="submit"
-        class="btn btn-primary aldrich shadow-none rounded-0"
+        class="btn btn-outline-success aldrich shadow-none rounded-0"
         style="width: 100%; height: 50px; opacity: 1"
         data-dismiss="modal"
         [disabled]="

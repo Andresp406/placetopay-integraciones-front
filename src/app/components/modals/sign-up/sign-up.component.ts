@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
+import { IDataRegister, IResponseRegister, IUserRegister } from '../../../interfaces/register';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
 export class SignUpComponent implements OnInit {
 
   forma : FormGroup;
-  typeDocument: string []=[];
+  type_document: string []=[];
   id:number = 0;
   @Input() user:any;
   @Output() cerrarModal = new EventEmitter<boolean>();
@@ -23,7 +24,7 @@ export class SignUpComponent implements OnInit {
 
   ) { 
     this.forma = this.setValidation();
-    this.typeDocument = [
+    this.type_document = [
       'C.C',
       'C.E',
       'PAS',
@@ -36,21 +37,37 @@ export class SignUpComponent implements OnInit {
     
   }
   
-  cerrar(event: any) {
+  cerrar(event: boolean) {
     this.cerrarModal.emit(true);
   }
 
   setValidation(){
     return new FormGroup({
-      id: new FormControl(null),
       email :new FormControl(null, [Validators.required, Validators.minLength(3), Validators.email]),
-      usuario : new FormControl(null,[Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[A-Za-z0-9]+$')]),
-      nombre :new FormControl(null, [Validators.required,Validators.minLength(3),  Validators.maxLength(100)]),
-      apellido: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
-      typeDocument: new FormControl(null, [Validators.required]),
+      first_name :new FormControl(null, [Validators.required,Validators.minLength(3),  Validators.maxLength(100)]),
+      last_name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      type_document: new FormControl(null, [Validators.required]),
       document: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required]),
+      password_confirmation: new FormControl(null, [Validators.required])
 
     });
+  }
+
+  handleForm(){
+    const data :IUserRegister = {
+      email : this.forma.get('email')?.value,
+      first_name : this.forma.get('first_name')?.value,
+      last_name : this.forma.get('last_name')?.value,
+      type_document : this.forma.get('type_document')?.value,
+      document :this.forma.get('document')?.value,
+      password :this.forma.get('password')?.value,
+      password_confirmation :this.forma.get('password_confirmation')?.value,
+    }
+    this._auth.register(data).subscribe((resp:IResponseRegister) => {
+      this.toastr.success(`${resp.message}`, '', {timeOut:1000});
+      this.cerrar(true);
+    }, err => console.log(err));
   }
 
   createEditProfile(event:any){

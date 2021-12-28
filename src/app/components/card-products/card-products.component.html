@@ -1,35 +1,32 @@
-<div class="card">
-  <img
-    class="card-img-top"
-    src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
-    alt="Card image cap"
-  />
-  <div class="card-body">
-      <div>
-          <h5 class="card-title">Portatil</h5>
-          <h5 class="card-title text-left">$5 USD</h5>
+
+ <div class="card" *ngFor="let product of products">
+      <img class="card-img-top" [src]="product.img" alt="Card image cap" />
+      <div class="card-body">
+        <div>
+          <h5 class="card-title">{{ product.name }}</h5>
+          <h5 class="card-title text-left">${{ product.price }} USD</h5>
+        </div>
+
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <p class="card-text">
+          <small class="text-muted"></small>
+        </p>
+
+        <ng-template *ngIf="isAuth; then buy; else login"></ng-template>
+
+        <ng-template #buy>
+          <a class="btn btn-outline-primary" (click)="onBuy.open()">Comprar</a>
+        </ng-template>
+
+        <ng-template #login>
+          <a class="btn btn-outline-primary" (click)="onLogin.open()"
+            >Iniciar Sesion</a
+          >
+        </ng-template>
       </div>
+    </div>
 
-    <p class="card-text">
-      This is a wider card with supporting text below as a natural lead-in to
-      additional content. This content is a little bit longer.
-    </p>
-    <p class="card-text">
-      <small class="text-muted"></small>
-    </p>
-
-    <ng-template *ngIf="isAuth; then buy; else login"></ng-template>
-    
-    <ng-template #buy>
-      <a class="btn btn-outline-primary" (click)="onBuy.open()" >Comprar</a>
-    </ng-template>
-
-    <ng-template #login>
-      <a class="btn btn-outline-primary" (click)="onLogin.open()" >Iniciar Sesion</a>
-    </ng-template>
-    
-  </div>
-</div>
 <app-base-modal #onBuy [target]="'buy'"></app-base-modal>
 <app-base-modal #onLogin [target]="'login'"></app-base-modal>
-
