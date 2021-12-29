@@ -23,9 +23,9 @@
           style="z-index: 50"
           placeholder="Email"
           formControlName="email"
-          #username
+          #email
         />
-        <app-validation-errors [formulario]="forma" formControlLabel="username" [minlenght]=3 [maxlenght]=20>
+        <app-validation-errors [formulario]="forma" formControlLabel="email" [minlenght]=3 [maxlenght]=100>
         </app-validation-errors>     
       </div>
       <div class="mb-2 text-right" style="height: 50px">
@@ -36,7 +36,7 @@
           formControlName="password"
           #nombre
         />
-        <app-validation-errors [formulario]="forma" formControlLabel="password" [minlenght]=3 [maxlenght]=100>
+        <app-validation-errors [formulario]="forma" formControlLabel="password" [minlenght]=8 [maxlenght]=20>
         </app-validation-errors>
        </div>
        

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ILogin, IResponseLogin, ISetDataLocalStorage } from 'src/app/interfaces/login';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -35,8 +35,8 @@ export class SignInComponent implements OnInit {
 
   setValidation(){
     return new FormGroup({
-      email : new FormControl(null),
-      password : new FormControl(null)
+      email : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      password : new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(20)])
     });
   }
 
@@ -51,10 +51,12 @@ export class SignInComponent implements OnInit {
         user: resp.data.user,
       }
       this._auth.setUserLocalStorage(dataStorage);
-      this._toast.success(`Bienvenido ${resp.data.user.first_name} ${resp.data.user.last_name}`, '', {timeOut:1500})
+      this._toast.success(`${resp.message}`, '', {timeOut:1500});
         this.cerrar(true);
 
-    }, err => console.log(err))
+    }, err => {
+      this._toast.error(`${err.error.message}`, '', {timeOut:1000});
+    })
   }
 
 

@@ -1,48 +1,65 @@
-<table class="table container">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Email</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Apellido</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Acciones</th>
-      </tr>
-    </thead>
-    <!-- <ng-template *ngIf="(dataCustomers.length === 0); then noData; else data"></ng-template>
+<header class="container mt-5 d-flex align-items-center">
+  <h1 class="mb-1">Mis Ordenes</h1>
+</header>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Email</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+           <ng-template *ngIf="orders.length !== 0; then data; else noData"></ng-template>
+      
+      
+          <ng-template #noData>
+            <tbody>
+              <tr>
+                <td><h1>No hay mas Datos para mostrar</h1></td>
+              </tr>            
+            </tbody>
+          </ng-template>
+      
+      
+          <ng-template #data>
+            <tbody>
+              <tr *ngFor="let customer of orders " [ngStyle]="{'height': '100px'}">
+                <th scope="row">{{customer?.id}}</th>
+                <td>{{customer?.email}}</td>
+                <td>{{customer?.usuario}}</td>
+                <td>{{customer?.nombre}}</td>
+                <td>{{customer?.apellido}}</td>
+                <td>{{customer?.status}}</td>
+               <!--  <td class="">
+                  <a href="javascript:void(0)" (click)="btnViewUser.open(customer)"><i class="fas fa-eye"></i></a>
+                  <a href="javascript:void(0)" (click)="btnEditUser.open(customer)"><i class="fas fa-edit"></i></a> 
+                </td> -->
+              </tr>     
+            </tbody>
+          
+          </ng-template>
+       
+          
+        </table>
+       <!-- | pagination:page:searchUser:field
+         (click)="previousPage()"
+        {{pag}}
+        (click)="nextPage()" [disabled]="(dataCustomers | pagination:page:searchUser).length === 0" -->
+        <ul class="pagination">
+          <li class="page-item"><button class="page-link"   style="cursor: pointer;">Previous</button></li>
+          <li class="page-item"><a class="page-link"></a></li>
+          <li class="page-item"><button class="page-link">Next</button></li>
+        </ul>
 
-
-    <ng-template #noData>
-      <h1>No hay mas Datos para mostrar</h1>
-    </ng-template>
-
-
-    <ng-template #data>
-      <tbody>
-        <tr *ngFor="let customer of dataCustomers | pagination:page:searchUser:field" [ngStyle]="{'height': '100px'}">
-          <th scope="row">{{customer?.id}}</th>
-          <td>{{customer?.email}}</td>
-          <td>{{customer?.usuario}}</td>
-          <td>{{customer?.nombre}}</td>
-          <td>{{customer?.apellido}}</td>
-          <td>{{customer?.status}}</td>
-          <td class="">
-            <a href="javascript:void(0)" (click)="btnViewUser.open(customer)"><i class="fas fa-eye"></i></a>
-            <a href="javascript:void(0)" (click)="btnEditUser.open(customer)"><i class="fas fa-edit"></i></a> 
-          </td>
-        </tr>     
-      </tbody>
+    </div>
     
-    </ng-template>
- -->
-    
-  </table>
- <!--  (click)="previousPage()"
-  {{pag}}
-  (click)="nextPage()" [disabled]="(dataCustomers | pagination:page:searchUser).length === 0" -->
-  <ul class="pagination">
-    <li class="page-item"><button class="page-link"   style="cursor: pointer;">Previous</button></li>
-    <li class="page-item"><a class="page-link"></a></li>
-    <li class="page-item"><button class="page-link">Next</button></li>
-  </ul>
+  </div>
+
+</div>

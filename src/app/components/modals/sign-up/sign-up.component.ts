@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
 import { IDataRegister, IResponseRegister, IUserRegister } from '../../../interfaces/register';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +21,7 @@ export class SignUpComponent implements OnInit {
   
   constructor(
     private _auth : AuthService,
-    private toastr: ToastrService
+    private _toast: ToastrService
 
   ) { 
     this.forma = this.setValidation();
@@ -43,7 +44,7 @@ export class SignUpComponent implements OnInit {
 
   setValidation(){
     return new FormGroup({
-      email :new FormControl(null, [Validators.required, Validators.minLength(3), Validators.email]),
+      email :new FormControl(null, [Validators.required, Validators.minLength(3), Validators.pattern(environment.patternEmail)]),
       first_name :new FormControl(null, [Validators.required,Validators.minLength(3),  Validators.maxLength(100)]),
       last_name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       type_document: new FormControl(null, [Validators.required]),
@@ -65,9 +66,11 @@ export class SignUpComponent implements OnInit {
       password_confirmation :this.forma.get('password_confirmation')?.value,
     }
     this._auth.register(data).subscribe((resp:IResponseRegister) => {
-      this.toastr.success(`${resp.message}`, '', {timeOut:1000});
+      this._toast.success(`${resp.message}`, '', {timeOut:1000});
       this.cerrar(true);
-    }, err => console.log(err));
+    }, err => {
+      this._toast.error(`${err.error.message}`, '', {timeOut:1000});
+    });
   }
 
   createEditProfile(event:any){

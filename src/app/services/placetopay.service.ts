@@ -15,8 +15,16 @@ export class PlacetopayService {
   ) { }
 
   connectGateWay(body:any):Observable<any>{
+    
     const headers= this._auth.headers;
     const url = `${environment.url_base}/api/v1/sale/?search`;
     return this._http.post<any>(url, body, {headers});
     }
+
+
+  responseGateway(reference:number){
+    const headers= this._auth.headers;
+    const url = `${environment.url_base}/api/v1/sale/my-sales?reference=${reference}`;
+    return this._http.get<any>(url, {headers});
+  }
 }

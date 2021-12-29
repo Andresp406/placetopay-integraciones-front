@@ -11,26 +11,26 @@ import { IResponseProduct, IProductData, Product } from '../../interfaces/produc
 export class CardProductsComponent implements OnInit {
 
   products : Product [] =[];
-
+  
   constructor(
     private _auth:AuthService,
     private _product: ProductsService
-  ) { }
+    ) { }
  
 
-  get isAuth(): boolean {
-    return this._auth.checkLogued();
-  }
-  
-  ngOnInit(): void {
-  this.getAllProducts();
-  }
-
-  getAllProducts(){
-    this._product.getAllProduct('').subscribe((resp:IResponseProduct) =>{
-      this.products = resp.data.products;
-    })
-  }
+    get isAuth(): boolean {
+      return this._auth.checkLogued();
+    }
+    
+    ngOnInit(): void {
+    this.getAllProducts();
+    }
+    
+    getAllProducts(){
+      this._product.getAllProduct('').subscribe((resp:IResponseProduct) =>{
+        this.products = resp.data.products;
+      })
+}
 
 
 }

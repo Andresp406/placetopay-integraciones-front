@@ -1,5 +1,6 @@
-
- <div class="card" *ngFor="let product of products">
+<div class="row ">
+  <div class="col-4 mb-4" *ngFor="let product of products">
+ <div class="card">
       <img class="card-img-top" [src]="product.img" alt="Card image cap" />
       <div class="card-body">
         <div>
@@ -8,7 +9,7 @@
         </div>
 
         <p class="card-text">
-          {{ product.description }}
+          {{ product.description | slice:0:30}}
         </p>
         <p class="card-text">
           <small class="text-muted"></small>
@@ -27,6 +28,8 @@
         </ng-template>
       </div>
     </div>
+  </div>
+  </div>
 
 <app-base-modal #onBuy [target]="'buy'"></app-base-modal>
 <app-base-modal #onLogin [target]="'login'"></app-base-modal>
