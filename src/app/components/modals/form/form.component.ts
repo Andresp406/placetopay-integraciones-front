@@ -4,6 +4,8 @@ import { PlacetopayService } from '../../../services/placetopay.service';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { debounceTime } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
+import { asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -21,6 +23,7 @@ export class FormComponent implements OnInit {
     @Inject(DOCUMENT) private document: any,
     private _placetopay:PlacetopayService,
     private _toast:ToastrService,
+    private spinner: NgxSpinnerService
   ) { 
     this.forma = this.setValidation();
   }
@@ -40,9 +43,11 @@ export class FormComponent implements OnInit {
       product_id:this.data.id,
       amount : this.forma.get('amount')?.value
     }
-    this._placetopay.connectGateWay(data).pipe(
-      debounceTime(1000)
-    ).subscribe(resp=>{
+    this.spinner.show();
+    this._placetopay.connectGateWay(data).subscribe(resp=>{
+      asyncScheduler.schedule(()=>{
+        this.spinner.hide();
+      }, 2000) 
       this.document.location.href =resp.data;
     },
     err =>{

@@ -13,11 +13,14 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageModule } from './pages/page.module';
 import { ComponentModule } from './components/component.module';
+import { SearchPipe } from './pipes/search.pipe';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SearchPipe,
    
   ],
   imports: [
@@ -27,7 +30,8 @@ import { ComponentModule } from './components/component.module';
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    PageModule
+    PageModule,
+    NgxSpinnerModule
     
   ],
   providers: [],
