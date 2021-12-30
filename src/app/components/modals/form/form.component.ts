@@ -5,6 +5,17 @@ import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
 import { NgxSpinnerService } from "ngx-spinner";
 
+
+export interface IDataCheckoutUser {
+  id: number
+  name: string;
+  email: string;
+  product_id: string;
+  amount:number;
+ 
+}
+
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -16,6 +27,7 @@ export class FormComponent implements OnInit {
   @Output() cerrarModal = new EventEmitter<boolean>();
   @Input() data:any;
   cant:number=1;
+  @Input() user!:any;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -34,18 +46,21 @@ export class FormComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   handleForm(){
-    const data:any={
-      product_id:this.data.id,
+    const dataCheckout:IDataCheckoutUser={
+      id:this.user?.user.id,
+      name:this.user?.user.first_name + this.user?.user.last_name,
+      email: this.user?.user.email,
+      product_id:this.data.id,   
       amount : this.forma.get('amount')?.value
-    }
+    }  
+
     this.spinner.show();
-    this._placetopay.connectGateWay(data).subscribe(resp=>{
+    this._placetopay.connectGateWay(dataCheckout).subscribe(resp=>{
       this.spinner.hide();
-      this.document.location.href = resp.data;
+      this.document.location.href = resp.data.url;
     },
     err =>{
       if (err.error.message){

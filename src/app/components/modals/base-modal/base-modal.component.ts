@@ -13,6 +13,7 @@ export class BaseModalComponent implements OnInit {
   @Output() newUser = new EventEmitter<any>() ;
   @Output() updateUser = new EventEmitter<any>() ;
   data:any;
+  option:any;
   constructor(
     private modal :ModalService
   ) { }
@@ -20,9 +21,10 @@ export class BaseModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  open(data:any=null){
-    if(data){
-      this.data = data
+  open(data:any=null, option:any=null){
+    if(data || option){
+      this.data = data;
+      this.option = option;
     }
     this.modal.showModal(this.divModal);
   }

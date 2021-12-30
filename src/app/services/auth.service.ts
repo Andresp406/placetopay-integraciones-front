@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ILogin, IResponseLogin, ISetDataLocalStorage } from '../interfaces/login';
+import { ILogin, IResponseLogin, IResponseUserLogued, ISetDataLocalStorage } from '../interfaces/login';
 import { IDataRegister, IResponseRegister, IUserRegister } from '../interfaces/register';
 
 @Injectable({
@@ -82,6 +82,12 @@ export class AuthService {
     localStorage.removeItem('user');
 
     return true;
+  }
+
+  userLogued():Observable<IResponseUserLogued>{
+    const headers = this._getHeaders();
+    const url = `${environment.url_base}/api/v1/me`;
+    return this._http.get<IResponseUserLogued>(url, {headers}); 
   }
 
 }

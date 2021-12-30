@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ComponentModule } from '../components/component.module';
 import { ModalModule } from '../components/modals/modal.module';
 import { OrdersComponent } from './orders/orders.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { OrdersComponent } from './orders/orders.component';
     ReactiveFormsModule, 
     AppRoutingModule,
     ComponentModule,
-    ModalModule
+    ModalModule,
+    NgxSpinnerModule
   ]
 })
 export class PageModule { }

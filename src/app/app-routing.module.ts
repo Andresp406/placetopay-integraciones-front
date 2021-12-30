@@ -10,13 +10,17 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'orders',
+    path: 'orders/:reference',
+    component: OrdersComponent
+  },
+  {
+    path: 'orders/',
     component: OrdersComponent
   },
   {
     path: '**',
     redirectTo: 'home'
-  }
+  } 
 ];
 
 @NgModule({

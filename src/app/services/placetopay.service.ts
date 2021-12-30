@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { IDataCheckoutUser } from '../components/modals/form/form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class PlacetopayService {
     private _auth:AuthService
   ) { }
 
-  connectGateWay(body:any):Observable<any>{
-    
+  connectGateWay(body:IDataCheckoutUser):Observable<any>{
+    console.log(body);
     const headers= this._auth.headers;
     const url = `${environment.url_base}/api/v1/sale/?search`;
     return this._http.post<any>(url, body, {headers});

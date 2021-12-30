@@ -10,7 +10,8 @@
         <app-form
         *ngIf="target === 'buy'"
         (cerrarModal)="modal.close()"  
-        [data]="data"        
+        [data]="data" 
+        [user]="option"       
       ></app-form>
 
         <app-sign-in

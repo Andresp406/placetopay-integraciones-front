@@ -1,61 +1,67 @@
-
 <header class="container mt-5 d-flex align-items-center">
   <h1 class="mb-1">Mis Ordenes</h1>
-  <a href="javascript:void(0);" class="btn btn-outline-warning" [routerLink]="['/']"> Home </a>
+  <a
+    href="javascript:void(0);"
+    class="btn btn-outline-warning ml-5"
+    [routerLink]="['/']"
+  >
+    Home
+  </a>
 </header>
 <div class="container mt-5">
   <div class="row">
     <div class="col">
       <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Email</th>
-              <th scope="col">Usuario</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>      
-      
-          
-            <tbody *ngIf="orders.length === 0;else data">
-              <tr>
-                <td><h1>No hay mas Datos para mostrar</h1></td>
-              </tr>            
-            </tbody>         
-      
-      
-          <ng-template #data>
-            <tbody>
-              <tr *ngFor="let customer of orders " [ngStyle]="{'height': '100px'}">
-                <th scope="row">{{orders}}</th>
-                <td>{{customer?.email}}</td>
-                <td>{{customer?.usuario}}</td>
-                <td>{{customer?.first_name}}</td>
-                <td>{{customer?.last_name}}</td>
-                <td>{{customer?.status}}</td>
-               <!--  <td class="">
-                  <a href="javascript:void(0)" (click)="btnViewUser.open(customer)"><i class="fas fa-eye"></i></a>
-                  <a href="javascript:void(0)" (click)="btnEditUser.open(customer)"><i class="fas fa-edit"></i></a> 
-                </td> -->
-              </tr>     
-            </tbody>
-          
-          </ng-template>
-       
-          
-        </table>     
-         
-        <ul class="pagination">
-          <li class="page-item"><button class="page-link" (click)="previousPage()"  style="cursor: pointer;">Previous</button></li>
-          <li class="page-item"><a class="page-link">{{pag}}</a></li>
-          <li class="page-item"><button class="page-link" (click)="nextPage()" >Next</button></li>
-        </ul>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Description Producto</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <ngx-spinner
+          bdColor="rgba(51,51,51,0.8)"
+          size="medium"
+          color="#fff"
+          type="ball-scale-multiple"
+        >
+          >
+          <p style="font-size: 20px; color: white">Loading...</p></ngx-spinner
+        >
+        <tbody>
+          <tr *ngFor="let order of orders" [ngStyle]="{ height: '100px' }">
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ customer?.email }}</td>
+            <td>{{ customer?.first_name }} {{ customer?.last_name }}</td>
+            <td>{{ order?.name }}</td>
+            <td>{{ order?.description | slice: 0:10 }}</td>
+            <td>
+              <p class="badge badge-pill badge-primary" [ngClass]="{'badge badge-pill badge-success': status === 'PAYED', 
+                  'badge badge-pill badge-danger': status === 'REJECTED', 'badge badge-pill badge-primary': status === 'CREATED' }">{{ status }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="pagination">
+        <li class="page-item">
+          <button
+            class="page-link"
+            (click)="previousPage()"
+            style="cursor: pointer"
+          >
+            Previous
+          </button>
+        </li>
+        <li class="page-item">
+          <a class="page-link">{{ pag }}</a>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
     </div>
-    
   </div>
-
 </div>
-

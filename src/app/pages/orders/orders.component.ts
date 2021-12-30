@@ -1,5 +1,7 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { OrderService } from '../../services/order.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-orders',
@@ -10,25 +12,35 @@ export class OrdersComponent implements OnInit {
   orders :any []= [];
   page:number = 0;
   pag:number = 1;
+  customer:any;
+  status:string='';
+  statusClass:string[]=[
+    'CREATED',
+    'REJECTED',
+    'PAYED'
+  ];
+
   constructor(
-    private _order:OrderService
+    private _order:OrderService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
+    
     this.getAllOrders();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes.dataUser){
-      const change = changes.dataUser.currentValue;
-      //this.dataCustomers.push(change);
-    }
- 
-  }
+
 
   getAllOrders(){
+    this.spinner.show();
     this._order.getAllOrders().subscribe(resp=>{
-      this.orders = resp.data;
+      this.spinner.hide();
+      this.orders = resp.data.product;
+      this.customer = resp.data.user;
+      this.status = resp.data.status;
+      this.statusClass.includes(this.status);
+
     })
   }
 
