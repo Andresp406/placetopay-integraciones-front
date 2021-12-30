@@ -1,27 +1,16 @@
 # PlacetopayFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+Este Proyecto usa [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
 
-## Development server
+## Instalaciones neesarias
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+se debe instalar node de manera global descargandolo desde la pagina principal, ademas se debe instalar las dependencias de node_modules con el comando `npm install` luego se corre la aplicacion con el comando `ng serve -o`  
 
-## Code scaffolding
+## Datos del sistemas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este sistema consta de una estructura de directorios donde encontramos los component que es donde estan los componentes como modales footer y las card donde se visualizan los productos, ademas contiene la carpeta de guard para proteger las rutas de login y register, por otro lado contiene la carpeta de interfaces que son las que nos ayudan al tipado estricto de typescript, las pages que son las que hacen la aplicacion una SPA las cuales son home y orders, este sistema cuenta con variables de entorno para poder consumir los endpoint de manera correcto ademas tiene una carpeta de shared donde se encuentran las validaciones de los formularios y un componente que es el cierre de las modales, cada carpeta esta construida con su respectivo modulo para hacer la carga mas eficiente
 
-## Build
+## Paquetes de terceros
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+los paquetes que use fueron ngx-toast, ngx-loader, ngx-bootstrap
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
