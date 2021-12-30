@@ -46,10 +46,10 @@
             <td>{{ order?.description | slice: 0:10 }}</td>
             <td>{{ order?.price }}</td>
             <td>
-              <p class="badge badge-pill badge-primary" [ngClass]="{'badge badge-pill badge-success': status === 'APPROVED', 
-                  'badge badge-pill badge-danger': status === 'REJECTED', 'badge badge-pill badge-primary': status === 'CREATED' }">{{ status }}</p>
+              <p class="badge badge-pill badge-primary" [ngClass]="{'badge badge-pill badge-success': order.status === 'APPROVED', 
+                  'badge badge-pill badge-danger': order.status === 'REJECTED', 'badge badge-pill badge-primary': order.status === 'CREATED' }">{{ order.status }}</p>
             </td>
-            <ng-template *ngIf="url; then data"></ng-template>
+            <ng-template *ngIf="order.status === 'REJECTED'; then data"></ng-template>
             <ng-template #data>
               <td><a [href]="url">Volver para pagar</a></td>
             </ng-template>

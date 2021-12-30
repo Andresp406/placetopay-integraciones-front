@@ -33,7 +33,6 @@ export class OrdersComponent implements OnInit {
       this.spinner.hide();
       this.orders = resp.data.product;
       this.customer = resp.data.user;
-      this.status = resp.data.status;
       this.url =  localStorage.getItem('url') || '';
     }, err => {
       console.log(err);
