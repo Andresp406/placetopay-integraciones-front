@@ -20,6 +20,11 @@
             <th scope="col">Nombre Producto</th>
             <th scope="col">Description Producto</th>
             <th scope="col">Estado</th>
+            <ng-template *ngIf="url; then data"></ng-template>
+            <ng-template #data>
+            <th scope="col">Accion</th>
+            </ng-template>
+            
           </tr>
         </thead>
         <ngx-spinner
@@ -39,9 +44,13 @@
             <td>{{ order?.name }}</td>
             <td>{{ order?.description | slice: 0:10 }}</td>
             <td>
-              <p class="badge badge-pill badge-primary" [ngClass]="{'badge badge-pill badge-success': status === 'PAYED', 
+              <p class="badge badge-pill badge-primary" [ngClass]="{'badge badge-pill badge-success': status === 'APPROVED', 
                   'badge badge-pill badge-danger': status === 'REJECTED', 'badge badge-pill badge-primary': status === 'CREATED' }">{{ status }}</p>
             </td>
+            <ng-template *ngIf="url; then data"></ng-template>
+            <ng-template #data>
+              <td><a [href]="url">Volver para pagar</a></td>
+            </ng-template>
           </tr>
         </tbody>
       </table>

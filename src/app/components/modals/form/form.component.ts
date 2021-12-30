@@ -24,9 +24,9 @@ export interface IDataCheckoutUser {
 export class FormComponent implements OnInit {
 
   forma:FormGroup;
+  cant:number=1;
   @Output() cerrarModal = new EventEmitter<boolean>();
   @Input() data:any;
-  cant:number=1;
   @Input() user!:any;
 
   constructor(
@@ -61,6 +61,7 @@ export class FormComponent implements OnInit {
     this._placetopay.connectGateWay(dataCheckout).subscribe(resp=>{
       this.spinner.hide();
       this.document.location.href = resp.data.url;
+      localStorage.setItem('url', resp.data.url);
     },
     err =>{
       if (err.error.message){
@@ -69,11 +70,6 @@ export class FormComponent implements OnInit {
     })
 
   } 
-
-  handleFormPse(){
-    this._placetopay.connectGatewayPse().subscribe(console.log)
-
-   }
 
   cerrar(event: boolean) {
     this.cerrarModal.emit(true);

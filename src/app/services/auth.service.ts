@@ -80,6 +80,7 @@ export class AuthService {
   removeCurrentUser(): boolean {
     localStorage.removeItem('x-token');
     localStorage.removeItem('user');
+    localStorage.removeItem('url');
 
     return true;
   }

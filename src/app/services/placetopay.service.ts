@@ -16,11 +16,10 @@ export class PlacetopayService {
   ) { }
 
   connectGateWay(body:IDataCheckoutUser):Observable<any>{
-    console.log(body);
     const headers= this._auth.headers;
     const url = `${environment.url_base}/api/v1/sale/?search`;
     return this._http.post<any>(url, body, {headers});
-    }
+  }
 
 
   responseGateway(reference:number){

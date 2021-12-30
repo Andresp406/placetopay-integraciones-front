@@ -14,23 +14,18 @@ export class OrdersComponent implements OnInit {
   pag:number = 1;
   customer:any;
   status:string='';
-  statusClass:string[]=[
-    'CREATED',
-    'REJECTED',
-    'PAYED'
-  ];
+  url:string='';
+ 
 
   constructor(
     private _order:OrderService,
     private spinner: NgxSpinnerService,
+
   ) { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {    
     this.getAllOrders();
   }
-
-
 
   getAllOrders(){
     this.spinner.show();
@@ -39,8 +34,9 @@ export class OrdersComponent implements OnInit {
       this.orders = resp.data.product;
       this.customer = resp.data.user;
       this.status = resp.data.status;
-      this.statusClass.includes(this.status);
-
+      this.url =  localStorage.getItem('url') || '';
+    }, err => {
+      console.log(err);
     })
   }
 
