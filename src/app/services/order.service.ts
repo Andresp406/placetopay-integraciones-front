@@ -13,9 +13,9 @@ export class OrderService {
     private _auth:AuthService
   ) { }
 
-  getAllOrders(search:string){
+  getAllOrders(){
     const headers = this._auth.headers;
-    const url = `${environment.url_base}/api/v1/sale/my-sales?search=${search}`;
+    const url = `${environment.url_base}/api/v1/sale/my-sales`;
     return this._http.get<any>(url, {headers});
   }
 }

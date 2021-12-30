@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getAllOrders(){
-    this._order.getAllOrders('').subscribe(resp=>{
+    this._order.getAllOrders().subscribe(resp=>{
       this.orders = resp.data;
     })
   }

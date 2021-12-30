@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   url_base: 'http://localhost:8000',
   patternEmail: '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.(com$)|(co$)|(tv$)|(net$)|(io$)|(help$)|(edu$)|(info$)|(biz$)|(org$)|(aero$)|(gov$)|(asia$)|(coop$)',
-
+  url_base_pse:'https://test.placetopay.com/soap/pse/v11/?wsdl'
 };
 
 /*

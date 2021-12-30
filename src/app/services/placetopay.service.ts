@@ -24,7 +24,13 @@ export class PlacetopayService {
 
   responseGateway(reference:number){
     const headers= this._auth.headers;
-    const url = `${environment.url_base}/api/v1/sale/my-sales?reference=${reference}`;
+    const url = `${environment.url_base}/api/v1/sale/my-sales`;
     return this._http.get<any>(url, {headers});
+  }
+
+  connectGatewayPse(){
+     const headers = this._auth.headers;
+     const url = `${environment.url_base}/api/v1/sale/pse`;
+     return this._http.get<any>(url, {headers})
   }
 }

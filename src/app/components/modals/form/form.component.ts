@@ -3,9 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PlacetopayService } from '../../../services/placetopay.service';
 import { ToastrService } from 'ngx-toastr';
 import { DOCUMENT } from '@angular/common';
-import { debounceTime } from 'rxjs/operators';
 import { NgxSpinnerService } from "ngx-spinner";
-import { asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -23,7 +21,8 @@ export class FormComponent implements OnInit {
     @Inject(DOCUMENT) private document: any,
     private _placetopay:PlacetopayService,
     private _toast:ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+
   ) { 
     this.forma = this.setValidation();
   }
@@ -45,10 +44,8 @@ export class FormComponent implements OnInit {
     }
     this.spinner.show();
     this._placetopay.connectGateWay(data).subscribe(resp=>{
-      asyncScheduler.schedule(()=>{
-        this.spinner.hide();
-      }, 2000) 
-      this.document.location.href =resp.data;
+      this.spinner.hide();
+      this.document.location.href = resp.data;
     },
     err =>{
       if (err.error.message){
@@ -56,7 +53,12 @@ export class FormComponent implements OnInit {
       }
     })
 
-  }
+  } 
+
+  handleFormPse(){
+    this._placetopay.connectGatewayPse().subscribe(console.log)
+
+   }
 
   cerrar(event: boolean) {
     this.cerrarModal.emit(true);
