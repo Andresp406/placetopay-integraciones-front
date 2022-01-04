@@ -65,7 +65,9 @@ export class FormComponent implements OnInit {
     },
     err =>{
       if (err.error.message){
-        this._toast.error(`Debe ingresar una cantidad`, '', {timeOut:1000})
+        this._toast.error(`Debe ingresar una cantidad`, '', {timeOut:1000});
+        this.spinner.hide();
+
       }
     })
 

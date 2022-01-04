@@ -32,6 +32,7 @@ export class OrdersComponent implements OnInit {
     this._order.getAllOrders().subscribe(resp=>{
       this.spinner.hide();
       this.orders = resp.data.product;
+      console.log(resp)
       this.customer = resp.data.user;
       this.url =  localStorage.getItem('url') || '';
     }, err => {
