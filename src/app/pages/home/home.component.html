@@ -18,7 +18,7 @@
                 <a href="javascript:void(0);" (click)="onRegister.open()" *ngIf="!isAuth">Register &nbsp;&nbsp;&nbsp;<i class="fas fa-user-plus"></i></a>
             </li>   
             <li class="sidebar-nav-item">
-                <a href="javascript:void(0);" [routerLink]="['/orders']" *ngIf="isAuth" >Mis Ordenes &nbsp;&nbsp;&nbsp;<i class="fab fa-first-order"></i></a>
+                <a href="javascript:void(0);" [routerLink]="['/order']" *ngIf="isAuth" >Mis Ordenes &nbsp;&nbsp;&nbsp;<i class="fab fa-first-order"></i></a>
             </li>   
             <li class="sidebar-nav-item">
                 <a href="javascript:void(0);" (click)="logOut()" *ngIf="isAuth" >Salir &nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a> 

@@ -8,12 +8,14 @@ import { ComponentModule } from '../components/component.module';
 import { ModalModule } from '../components/modals/modal.module';
 import { OrdersComponent } from './orders/orders.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     OrdersComponent,
+    OrderComponent,
   ],
   imports: [
     CommonModule,

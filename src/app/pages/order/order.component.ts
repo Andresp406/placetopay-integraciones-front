@@ -4,11 +4,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrderComponent implements OnInit {
   orders :any []= [];
   page:number = 0;
   pag:number = 1;

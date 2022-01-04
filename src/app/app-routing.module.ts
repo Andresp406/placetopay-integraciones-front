@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { OrderComponent } from './pages/order/order.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
     component: OrdersComponent
   },
   {
-    path: 'orders/',
-    component: OrdersComponent
+    path: 'order',
+    component: OrderComponent
   },
   {
     path: '**',
