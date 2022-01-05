@@ -12,7 +12,6 @@ export class OrdersComponent implements OnInit {
   orders :any []= [];
   page:number = 0;
   pag:number = 1;
-  customer:any;
   status:string='';
   url:string='';
  
@@ -31,10 +30,9 @@ export class OrdersComponent implements OnInit {
     this.spinner.show();
     this._order.getAllOrders().subscribe(resp=>{
       this.spinner.hide();
-      
-      this.orders = resp.data.product;
       console.log(resp)
-      this.customer = resp.data.user;
+      this.orders = resp.data;
+     
       this.url =  localStorage.getItem('url') || '';
     }, err => {
       console.log(err);
